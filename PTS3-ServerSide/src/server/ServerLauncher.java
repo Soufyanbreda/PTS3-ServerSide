@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pts3.serverside;
+package server;
 
 /**
  *
  * @author soufyan
  */
-public class PTS3ServerSide {
+public class ServerLauncher {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args)
+    {
+        ServerManager serverManager = new ServerManager();
     }
     
 }

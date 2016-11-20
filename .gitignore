@@ -62,3 +62,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /PTS3-ServerSide/nbproject/private/
+/PTS3-ServerSide/build/
+/PTS3-ServerSide/dist/
