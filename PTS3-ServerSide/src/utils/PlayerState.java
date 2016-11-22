@@ -12,7 +12,7 @@ package utils;
  */
 public enum PlayerState
 {
-    NOTREADY,
+    WAITING,
     READY,
     RACING,
     FINISHED

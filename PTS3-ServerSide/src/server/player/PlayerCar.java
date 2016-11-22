@@ -9,12 +9,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  *
  * @author Milton van de Sanden
  */
-public class PlayerCar
+public class PlayerCar implements Serializable
 {
     private final Sprite sprite;
     private float speed;
