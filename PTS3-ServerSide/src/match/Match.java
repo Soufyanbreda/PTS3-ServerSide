@@ -8,6 +8,7 @@ package match;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import server.player.CompetingPlayer;
 import server.player.Player;
 import utils.GameState;
 
@@ -39,6 +40,19 @@ public class Match implements Serializable
     public List<Player> getPlayers() {
         return players;
     }
+    
+    public Player getPlayer(String username)
+    {
+        for(Player player : players)
+        {
+            if(player.getUsername().equals(username))
+            {
+                return player;
+            }
+        }
+        
+        return null;
+    }
 
     public void setPlayers(List<Player> players) {
         this.players = players;
@@ -55,5 +69,26 @@ public class Match implements Serializable
     public void removePlayer(Player player)
     {
         players.remove(player);
+    }
+    
+    public boolean hasCompetingRoom()
+    {
+        int counter = 0;
+        
+        for(Player player : players)
+        {
+            if(player.getClass() == CompetingPlayer.class)
+            {
+                counter++;
+            }
+        }
+        
+        return counter < 4;
+    }
+    
+    public void replacePlayer(Player player1, Player player2)
+    {
+        removePlayer(player1);
+        addPlayer(player2);
     }
 }

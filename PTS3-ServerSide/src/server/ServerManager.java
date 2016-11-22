@@ -18,7 +18,7 @@ import utils.Color;
  */
 public class ServerManager
 {   
-    private Match match;
+    private final Match match;
     
     public ServerManager()
     {
@@ -27,51 +27,30 @@ public class ServerManager
     
     public Match logIn(String username)
     {
-        int competingCounter = 0;
-        
-        for(Player player : match.getPlayers())
+        if(username == null)
         {
-            if(username.equals(player.getUsername()))
-            {
-                return null;
-            }
-            
-            if(player.getClass() == CompetingPlayer.class)
-            {
-                competingCounter++;
-            }
+            throw new IllegalArgumentException("username is null");
         }
         
+        if(username.isEmpty())
+        {
+            throw new IllegalArgumentException("username is empty");
+        }
+
+        if(match.getPlayer(username) != null)
+        {
+            throw new IllegalArgumentException("username is in use");
+        }
+                
         Player player;
 
-        Color color;
-            
-        switch (competingCounter)
+        if(match.hasCompetingRoom())
         {
-            case 0:
-                color = Color.RED;
-                break;
-            case 1:
-                color = Color.BLUE;
-                break;
-            case 2:
-                color = Color.GREEN;
-                break;
-            case 3:
-                color = Color.YELLOW;
-                break;
-            default:
-                color = Color.BLACK;
-                break;
-        }
-        
-        if(competingCounter < 4)
-        {
-            player = new CompetingPlayer(username, color);
+            player = new CompetingPlayer(username, generateColor());
         }
         else
         {
-            player = new SpectatingPlayer(username, color);
+            player = new SpectatingPlayer(username, generateColor());
         }
         
         match.addPlayer(player);
@@ -103,5 +82,23 @@ public class ServerManager
         }
         
         return color;
+    }
+    
+    
+    public void roleSwitch(String username)
+    {
+        Player player = match.getPlayer(username);
+        Player player2;
+        
+        if(player.getClass() == CompetingPlayer.class)
+        {
+            player2 = new SpectatingPlayer(player.getUsername(), player.getColor());
+            match.replacePlayer(player, player2);
+        }
+        else if(player.getClass() == SpectatingPlayer.class && match.hasCompetingRoom())
+        {
+            player2 = new CompetingPlayer(player.getUsername(), player.getColor());
+            match.replacePlayer(player, player2);
+        }
     }
 }
