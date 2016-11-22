@@ -11,6 +11,7 @@ import server.player.CompetingPlayer;
 import server.player.Player;
 import server.player.SpectatingPlayer;
 import utils.Color;
+import utils.PlayerState;
 
 /**
  * @author Marouan Bakour
@@ -100,5 +101,24 @@ public class ServerManager
             player2 = new CompetingPlayer(player.getUsername(), player.getColor());
             match.replacePlayer(player, player2);
         }
+    }
+    
+    public void ready(String username, boolean isReady)
+    {
+        Player player = match.getPlayer(username);
+        if(player != null)
+        {
+            if(player.getClass() == CompetingPlayer.class)
+            {
+                if(isReady)
+                {
+                    ((CompetingPlayer) player).setPlayerState(PlayerState.READY);
+                }
+                else
+                {
+                    ((CompetingPlayer) player).setPlayerState(PlayerState.WAITING);
+                }            
+            }   
+        }        
     }
 }
