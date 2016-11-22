@@ -20,6 +20,8 @@ public class Match implements Serializable
 {
     private GameState gameState;
     
+    private Map map;
+    
     private List<Player> players;
     
     public Match()
@@ -90,5 +92,13 @@ public class Match implements Serializable
     {
         removePlayer(player1);
         addPlayer(player2);
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 }
