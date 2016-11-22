@@ -6,10 +6,12 @@
 package server;
 
 /**
- *
+ * @author Marouan Bakour
  * @author Milton van de Sanden
  */
 public class ServerManager
 {
-    
+    private void updateClients(){
+        throw new UnsupportedOperationException();
+    }
 }
