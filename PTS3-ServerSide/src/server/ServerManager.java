@@ -11,6 +11,7 @@ import comms.ServerComm;
 import java.awt.Point;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -56,18 +57,20 @@ public class ServerManager
             serverRegistry = LocateRegistry.createRegistry(SERVERPORTNUMBER);
             serverRegistry.rebind("Server", serverComms);
             
+            System.out.println("----------------------------");
             System.out.println("Server running");
             System.out.println("ip: " + SERVERIP.toString());
             System.out.println("port: " + SERVERPORTNUMBER);
         } catch (RemoteException | UnknownHostException ex)
         {
             Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("----------------------------");
             System.out.println("SERVER CRASHED, pls relaunch");
         }
     }
     
-    public Match logIn(String username)
-    {        
+    public Match logIn(String username, String ip, int portnumber)
+    {
         if(username == null)
         {
             throw new IllegalArgumentException("username is null");
@@ -81,6 +84,23 @@ public class ServerManager
         if(match.getPlayer(username) != null)
         {
             throw new IllegalArgumentException("username is in use");
+        }
+        
+        try
+        {
+            Registry registry = LocateRegistry.getRegistry(ip, portnumber);
+            clientComms.add((IComms) registry.lookup("Client"));
+            System.out.println("----------------------------");
+            System.out.println("connected to received client");
+            System.out.println("ip: " + ip);
+            System.out.println("port: " + portnumber);
+        } catch (RemoteException | NotBoundException ex)
+        {
+            Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("----------------------------");
+            System.out.println("Cannot connect to received client");
+            System.out.println("ip: " + ip);
+            System.out.println("port: " + portnumber);
         }
                 
         Player player;

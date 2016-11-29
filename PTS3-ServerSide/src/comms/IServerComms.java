@@ -15,7 +15,7 @@ import match.Match;
  */
 public interface IServerComms extends Remote
 {
-    public Match Login(String username) throws RemoteException;
+    public Match Login(String username, String ip, int portnumber) throws RemoteException;
     
     public boolean roleSwitch(String username) throws RemoteException;
     

@@ -30,9 +30,9 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     }
     
     @Override
-    public Match Login(String username)
+    public Match Login(String username, String ip, int portnumber)
     {
-        return serverManager.logIn(username);
+        return serverManager.logIn(username, ip, portnumber);
     }
     
     @Override
