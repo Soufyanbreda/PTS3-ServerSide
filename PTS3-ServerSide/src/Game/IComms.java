@@ -5,7 +5,7 @@
  */
 package Game;
 
-import Player.CompetingPlayer;
+import player.CompetingPlayer;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
