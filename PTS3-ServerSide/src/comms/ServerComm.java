@@ -10,6 +10,7 @@ package comms;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import match.Match;
+import server.ServerManager;
 
 
 
@@ -19,15 +20,19 @@ import match.Match;
  */
 public class ServerComm extends UnicastRemoteObject implements IServerComms 
 {
-    public ServerComm() throws RemoteException
+    private ServerManager serverManager;
+    
+    public ServerComm() throws RemoteException{}
+    
+    public ServerComm(ServerManager serverManager) throws RemoteException
     {
-        
+        this.serverManager = serverManager;
     }
     
     @Override
     public Match Login(String username)
     {
-        throw new UnsupportedOperationException();
+        return serverManager.logIn(username);
     }
     
     @Override

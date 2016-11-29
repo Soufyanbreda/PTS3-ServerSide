@@ -5,6 +5,7 @@
  */
 package server;
 
+import Game.IComms;
 import comms.IServerComms;
 import comms.ServerComm;
 import java.awt.Point;
@@ -13,6 +14,8 @@ import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,25 +36,29 @@ public class ServerManager
     private Match match;
     private IServerComms serverComms;
     
-    private Registry registry;
-    private final int PORTNUMBER = 1099;
-    private InetAddress IP;
-
+    private Registry serverRegistry;
+    private final int SERVERPORTNUMBER = 1099;
+    private InetAddress SERVERIP;
+    
+    private List<IComms> clientComms;
     
     public ServerManager()
     {
+        match = new Match();
+        clientComms = new ArrayList<>();
+        
         try
         {
             serverComms = new ServerComm();
             
-            IP = InetAddress.getLocalHost();
+            SERVERIP = InetAddress.getLocalHost();
             
-            registry = LocateRegistry.createRegistry(PORTNUMBER);
-            registry.rebind("Server", serverComms);
+            serverRegistry = LocateRegistry.createRegistry(SERVERPORTNUMBER);
+            serverRegistry.rebind("Server", serverComms);
             
             System.out.println("Server running");
-            System.out.println("ip: " + IP.toString());
-            System.out.println("port: " + PORTNUMBER);
+            System.out.println("ip: " + SERVERIP.toString());
+            System.out.println("port: " + SERVERPORTNUMBER);
         } catch (RemoteException | UnknownHostException ex)
         {
             Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +67,7 @@ public class ServerManager
     }
     
     public Match logIn(String username)
-    {
+    {        
         if(username == null)
         {
             throw new IllegalArgumentException("username is null");
@@ -86,16 +93,11 @@ public class ServerManager
         {
             player = new SpectatingPlayer(username, generateColor());
         }
-        
-//        serverComms.pushPlayer(player);
-        
         match.addPlayer(player);
-        
-        
         
         return match;
     }
-
+    
     public Color generateColor()
     {
         Color color;
