@@ -1,19 +1,17 @@
-package utils;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package match;
+
+import java.io.Serializable;
 
 /**
  *
- * @author Milton van de Sanden
+ * @author Danny
  */
-public enum PlayerState
+public enum ObstacleType implements Serializable
 {
-    WAITING,
-    READY,
-    RACING,
-    FINISHED
+    WALL, FINISH;
 }

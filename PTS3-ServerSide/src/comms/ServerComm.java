@@ -3,7 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package server;
+package comms;
+
+//import match.Lobby;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import match.Match;
+
+
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -19,8 +27,6 @@ import server.player.Player;
  *
  * @author marouano
  */
-public class ServerComm extends UnicastRemoteObject implements IServerComm {
-    public static final String MESSAGE = "Connected with server yo!";
     
     public ServerComm() throws RemoteException{
         super(0);

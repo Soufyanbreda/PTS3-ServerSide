@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package server.player;
+package player;
 
+import java.awt.Point;
 import java.io.Serializable;
 import utils.Color;
 import utils.PlayerState;
@@ -24,7 +25,7 @@ public class CompetingPlayer extends Player implements ICompetingPlayer, Seriali
         super(username, color);
         
         currentLap = 0;
-        playerState = PlayerState.NOTREADY;
+        playerState = PlayerState.WAITING;
     }
     
     @Override
@@ -52,7 +53,7 @@ public class CompetingPlayer extends Player implements ICompetingPlayer, Seriali
     @Override
     public void setPlayerState(PlayerState playerState)
     {
-        if(playerState != PlayerState.FINISHED || playerState != PlayerState.NOTREADY || playerState != PlayerState.RACING || playerState != PlayerState.READY)
+        if(playerState != PlayerState.FINISHED || playerState != PlayerState.WAITING || playerState != PlayerState.RACING || playerState != PlayerState.READY)
         {
             throw new IllegalArgumentException();
         }

@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package server;
+package utils;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Milton van de Sanden
  */
-public class Match {
-    
+public enum GameState implements Serializable
+{
+    LOBBY,
+    RACING
 }
