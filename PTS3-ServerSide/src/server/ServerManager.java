@@ -5,17 +5,24 @@
  */
 package server;
 
+import comms.IServerComms;
 import comms.ServerComm;
 import java.awt.Point;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import match.Map;
 import match.Match;
-import server.player.CompetingPlayer;
-import server.player.Player;
-import server.player.SpectatingPlayer;
+import player.CompetingPlayer;
+import player.Player;
+import player.SpectatingPlayer;
 import utils.Color;
 import utils.PlayerState;
-
 
 /**
  * @author Marouan Bakour
@@ -23,13 +30,33 @@ import utils.PlayerState;
  */
 public class ServerManager
 {   
-    private final Match match;
-    private final ServerComm serverComms;
+    private Match match;
+    private IServerComms serverComms;
+    
+    private Registry registry;
+    private final int PORTNUMBER = 1099;
+    private InetAddress IP;
+
     
     public ServerManager()
     {
-        match = new Match();
-        serverComms = new ServerComm();
+        try
+        {
+            serverComms = new ServerComm();
+            
+            IP = InetAddress.getLocalHost();
+            
+            registry = LocateRegistry.createRegistry(PORTNUMBER);
+            registry.rebind("Server", serverComms);
+            
+            System.out.println("Server running");
+            System.out.println("ip: " + IP.toString());
+            System.out.println("port: " + PORTNUMBER);
+        } catch (RemoteException | UnknownHostException ex)
+        {
+            Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SERVER CRASHED, pls relaunch");
+        }
     }
     
     public Match logIn(String username)
@@ -60,7 +87,7 @@ public class ServerManager
             player = new SpectatingPlayer(username, generateColor());
         }
         
-        serverComms.pushPlayer(player);
+//        serverComms.pushPlayer(player);
         
         match.addPlayer(player);
         
@@ -106,14 +133,14 @@ public class ServerManager
             player2 = new SpectatingPlayer(player.getUsername(), player.getColor());
             match.replacePlayer(player, player2);
             
-            serverComms.pushPlayer(player2);
+            //serverComms.pushPlayer(player2);
         }
         else if(player.getClass() == SpectatingPlayer.class && match.hasCompetingRoom())
         {
             player2 = new CompetingPlayer(player.getUsername(), player.getColor());
             match.replacePlayer(player, player2);
             
-            serverComms.pushPlayer(player2);
+            //serverComms.pushPlayer(player2);
         }
     }
     
@@ -127,12 +154,12 @@ public class ServerManager
                 if(isReady)
                 {
                     ((CompetingPlayer) player).setPlayerState(PlayerState.READY);
-                    serverComms.pushPlayer(player2);
+//                    serverComms.pushPlayer(player2);
                 }
                 else
                 {
                     ((CompetingPlayer) player).setPlayerState(PlayerState.WAITING);
-                    serverComms.pushPlayer(player2);
+//                    serverComms.pushPlayer(player2);
                 }            
             }   
         }
@@ -149,6 +176,6 @@ public class ServerManager
         ((CompetingPlayer) match.getPlayer(username)).getPlayerCar().getSprite().setPosition(location.x, location.y);
         ((CompetingPlayer) match.getPlayer(username)).getPlayerCar().getSprite().setRotation(angle);
         
-        serverComms.pushPlayer(match.getPlayer(username));
+//        serverComms.pushPlayer(match.getPlayer(username));
     }
 }

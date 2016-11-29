@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package server.player;
+package player;
 
+import java.awt.Point;
 import java.io.Serializable;
 import utils.Color;
 import utils.PlayerState;

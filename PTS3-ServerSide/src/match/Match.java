@@ -8,8 +8,8 @@ package match;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import server.player.CompetingPlayer;
-import server.player.Player;
+import player.CompetingPlayer;
+import player.Player;
 import utils.GameState;
 
 /**

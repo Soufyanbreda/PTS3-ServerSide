@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package server.player;
+package player;
 
+import java.io.Serializable;
 import utils.Color;
 
 /**
  *
  * @author Milton van de Sanden
  */
-public interface ISpectatingPlayer
+public class SpectatingPlayer extends Player implements ISpectatingPlayer, Serializable
 {
-    public String getUsername();
-    public void setUsername(String username);
+    public SpectatingPlayer(String username, Color color)
+    {
+        super(username, color);
+    }
     
-    public Color getColor();
-    public void setColor(Color color);
 }

@@ -5,21 +5,37 @@
  */
 package comms;
 
-import match.Lobby;
+//import match.Lobby;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import match.Match;
+
+
 
 /**
  *
  * @author marouano
  */
-public class ServerComm {
-    public Lobby Login(String username){
+public class ServerComm extends UnicastRemoteObject implements IServerComms 
+{
+    public ServerComm() throws RemoteException
+    {
+        
+    }
+    
+    @Override
+    public Match Login(String username)
+    {
         throw new UnsupportedOperationException();
     }
     
+    @Override
     public boolean roleSwitch(String username){
         throw new UnsupportedOperationException();
     }
     
+    @Override
     public void ready(String username){
         throw new UnsupportedOperationException();
     }
