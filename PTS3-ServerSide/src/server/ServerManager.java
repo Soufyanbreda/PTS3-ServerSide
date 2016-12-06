@@ -21,6 +21,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import match2.Map;
+import match2.MapManager;
 import match2.Match;
 import player2.CompetingPlayer;
 import player2.Player;
@@ -128,6 +129,10 @@ public class ServerManager
             player = new SpectatingPlayer(username, generateColor());
         }
         match.addPlayer(player);
+        
+        Map map = new MapManager().maps.get(1);
+        
+        match.setMap(map);
         
         return match;
     }

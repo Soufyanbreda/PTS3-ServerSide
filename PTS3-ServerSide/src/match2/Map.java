@@ -14,10 +14,12 @@ import java.util.List;
  */
 public class Map implements Serializable
 {
-        private String backgroundPath;
+    private String backgroundPath;
     private Obstacle finish;
     private Obstacle finish2;
     private List<Obstacle> walls;
+    
+    public static final long serialVersionUID = 1875;
     
     public Map(String backgroundPath, Obstacle finish, Obstacle finish2, List<Obstacle> walls)
     {
