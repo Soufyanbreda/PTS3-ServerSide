@@ -6,6 +6,7 @@
 package server;
 
 import Game.IComms;
+import com.badlogic.gdx.graphics.Texture;
 import comms.IServerComms;
 import comms.ServerComm;
 import java.awt.Point;
@@ -25,6 +26,7 @@ import match2.MapManager;
 import match2.Match;
 import player2.CompetingPlayer;
 import player2.Player;
+import player2.PlayerCar;
 import player2.SpectatingPlayer;
 import utils2.Color;
 import utils2.PlayerState;
@@ -67,21 +69,9 @@ public class ServerManager
             Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("----------------------------");
             System.out.println("SERVER CRASHED, pls relaunch");
-        }
+        }        
+    }
         
-//        try {
-//            //blub();
-//            serverComms.Login("Player1", "145.93.34.2", 1100);
-//        } catch (RemoteException ex) {
-//            Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }
-    
-    public void blub()
-    {
-        Match match = logIn("Player1", "192.168.178.16", 1100);
-    }
-    
     public Match logIn(String username, String ip, int portnumber)
     {
         
@@ -117,9 +107,9 @@ public class ServerManager
             System.out.println("ip: " + ip);
             System.out.println("port: " + portnumber);
         }
-                
-        Player player;
 
+        Player player;
+        
         if(match.hasCompetingRoom())
         {
             player = new CompetingPlayer(username, generateColor());

@@ -23,11 +23,12 @@ public class PlayerCar implements Serializable
     private static final float ACCELERATION = 1.05f;
     
     public static final long serialVersionUID = 1875;
-    public PlayerCar(Texture texture, Point size, Point location)
+    
+    public PlayerCar(Texture texture, Point location)
     {
         sprite = new Sprite(texture);
         
-        sprite.setSize(size.x, size.y);
+        sprite.setSize(17.5f, 32.75f);
         sprite.setOrigin(6.5f, 10f);
         sprite.rotate(-90);
         sprite.setPosition(location.x, location.y);
