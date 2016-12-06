@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package player;
+package player2;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -22,6 +22,7 @@ public class PlayerCar implements Serializable
     private static final float MAXSPEED = 4.5f;
     private static final float ACCELERATION = 1.05f;
     
+    public static final long serialVersionUID = 1875;
     public PlayerCar(Texture texture, Point size, Point location)
     {
         sprite = new Sprite(texture);

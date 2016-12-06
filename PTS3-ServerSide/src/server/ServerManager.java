@@ -22,11 +22,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import match2.Map;
 import match2.Match;
-import player.CompetingPlayer;
-import player.Player;
-import player.SpectatingPlayer;
-import utils.Color;
-import utils.PlayerState;
+import player2.CompetingPlayer;
+import player2.Player;
+import player2.SpectatingPlayer;
+import utils2.Color;
+import utils2.PlayerState;
 
 /**
  * @author Marouan Bakour
@@ -50,7 +50,7 @@ public class ServerManager
         
         try
         {
-            serverComms = new ServerComm();
+            serverComms = new ServerComm(this);
             
             SERVERIP = InetAddress.getLocalHost();
             
@@ -68,7 +68,12 @@ public class ServerManager
             System.out.println("SERVER CRASHED, pls relaunch");
         }
         
-        //blub();
+//        try {
+//            //blub();
+//            serverComms.Login("Player1", "145.93.34.2", 1100);
+//        } catch (RemoteException ex) {
+//            Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
     public void blub()
@@ -78,8 +83,10 @@ public class ServerManager
     
     public Match logIn(String username, String ip, int portnumber)
     {
+        
         if(username == null)
         {
+            
             throw new IllegalArgumentException("username is null");
         }
         

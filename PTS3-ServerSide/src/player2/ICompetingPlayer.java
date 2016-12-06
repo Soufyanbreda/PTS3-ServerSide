@@ -3,19 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package player;
+package player2;
 
-import utils.Color;
+import utils2.Color;
+import utils2.PlayerState;
 
 /**
  *
  * @author Milton van de Sanden
  */
-public interface ISpectatingPlayer
+public interface ICompetingPlayer
 {
     public String getUsername();
     public void setUsername(String username);
     
     public Color getColor();
     public void setColor(Color color);
+    
+    public int getCurrentLap();
+    public void setCurrentLap(int lap);
+    
+    public PlayerState getPlayerState();
+    public void setPlayerState(PlayerState playerState);
+
+    public PlayerCar getPlayerCar();
+    public void setPlayerCar(PlayerCar playerCar);
 }

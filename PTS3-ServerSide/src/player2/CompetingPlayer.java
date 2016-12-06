@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package player;
+package player2;
 
 import java.awt.Point;
 import java.io.Serializable;
-import utils.Color;
-import utils.PlayerState;
+import utils2.Color;
+import utils2.PlayerState;
 
 /**
  *
@@ -19,6 +19,8 @@ public class CompetingPlayer extends Player implements ICompetingPlayer, Seriali
     private int currentLap;
     private PlayerState playerState;
     private PlayerCar playerCar;
+    
+    public static final long serialVersionUID = 1875;
 
     public CompetingPlayer(String username, Color color)
     {

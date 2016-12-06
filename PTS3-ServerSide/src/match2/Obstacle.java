@@ -18,6 +18,8 @@ public class Obstacle implements Serializable
     private Rectangle box;
     private ObstacleType obstacleType;
     
+    public static final long serialVersionUID = 1875;
+    
     public Obstacle(int x, int y, int width, int height, String spritePath, ObstacleType obstacleType)
     {
         box = new Rectangle(x, y, width, height);

@@ -13,5 +13,7 @@ import java.io.Serializable;
  */
 public enum ObstacleType implements Serializable
 {
+    
+    
     WALL, FINISH;
 }

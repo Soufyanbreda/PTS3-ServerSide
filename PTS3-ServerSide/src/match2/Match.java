@@ -8,9 +8,9 @@ package match2;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import player.CompetingPlayer;
-import player.Player;
-import utils.GameState;
+import player2.CompetingPlayer;
+import player2.Player;
+import utils2.GameState;
 
 /**
  *
@@ -20,6 +20,10 @@ public class Match implements Serializable
 {
     private GameState gameState;
     
+    /**
+     *
+     */
+    public static final long serialVersionUID = 1875;
     private Map map;
     
     private List<Player> players;
