@@ -134,17 +134,37 @@ public class ServerManager
                 player.setPlayerCar(new PlayerCar(0f, new Point(335, 665)));
 
                 match.addPlayer(player);
-            } catch(Exception exception)
+                
+                if(match.getPlayers().size() > 1)
+                {
+                    for(IComms clientComm : clientComms)
+                    {
+                        clientComm.pushPlayer(player);
+                    }
+                }
+            } 
+            catch(RemoteException ex)
             {
-                throw exception;
+                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else
         {
             SpectatingPlayer player = new SpectatingPlayer(username, generateColor());
             match.addPlayer(player);
+            
+            if(match.getPlayers().size() > 1)
+            {
+                for(IComms clientComm : clientComms)
+                {
+                    try {
+                        clientComm.pushPlayer(player);
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
         }
-
         
         Map map = new MapManager().maps.get(1);
         
