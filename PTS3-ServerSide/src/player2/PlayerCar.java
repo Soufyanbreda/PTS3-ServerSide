@@ -8,6 +8,7 @@ package player2;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import java.awt.Point;
 import java.io.Serializable;
 
@@ -17,52 +18,54 @@ import java.io.Serializable;
  */
 public class PlayerCar implements Serializable
 {
-    private final Sprite sprite;
     private float speed;
     private static final float MAXSPEED = 4.5f;
     private static final float ACCELERATION = 1.05f;
     
-    public static final long serialVersionUID = 1875;
+    private float rotation;
+    private Rectangle rectangle;
     
-    public PlayerCar(Texture texture, Point location)
-    {
-        sprite = new Sprite(texture);
+    public static final long serialVersionUID = 1875;
         
-        sprite.setSize(17.5f, 32.75f);
-        sprite.setOrigin(6.5f, 10f);
-        sprite.rotate(-90);
-        sprite.setPosition(location.x, location.y);
+    public PlayerCar(float rotation, Point location)
+    {
+        this.rotation = rotation;
+        rectangle = new Rectangle(location.x, location.y, 17.5f, 32.75f);
         
         speed = 0.0f;
     }
     
+    public void setPosition(Point location)
+    {
+        rectangle.setPosition(new Vector2(location.x, location.y));
+    }
+    
     public Rectangle getRectangle()
     {
-        return sprite.getBoundingRectangle();
+        return rectangle;
     }
     
     public void moveForward()
     {
-        float x = (float) Math.cos(Math.toRadians(sprite.getRotation()+90));
-        float y = (float) Math.sin(Math.toRadians(sprite.getRotation()+90));
+        float x = (float) Math.cos(Math.toRadians(rotation + 90));
+        float y = (float) Math.sin(Math.toRadians(rotation + 90));
 
-        sprite.translate(x * speed, y * speed);
+        rectangle.x += x * speed;
+        rectangle.y += y * speed;
      }
     
     public void turnRight()
     {
-        sprite.rotate(-5f);   
+        rotation += -5f;   
     }
 
     public void turnLeft()
     {
         if (speed > 1)
         {
-            sprite.rotate(5f);
+            rotation += 5f;
         }
     }
-    
-
     
     public float getSpeed()
     {
@@ -78,12 +81,7 @@ public class PlayerCar implements Serializable
         
         this.speed = speed;
     }
-    
-    public Sprite getSprite()
-    {
-        return sprite;
-    }
-    
+        
     public void increaseSpeed()
     {
         if (speed < 1)
@@ -111,5 +109,13 @@ public class PlayerCar implements Serializable
     public float getMaxSpeed()
     {
         return MAXSPEED;
+    }
+
+    public float getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(float rotation) {
+        this.rotation = rotation;
     }
 }
