@@ -34,7 +34,7 @@ public abstract class Player implements Serializable
             throw new IllegalArgumentException();
         }
         
-        if(color != Color.BLACK || color != Color.BLUE || color != Color.GREEN || color != Color.RED || color != Color.YELLOW)
+        if(color != Color.BLACK && color != Color.BLUE && color != Color.GREEN && color != Color.RED && color != Color.YELLOW)
         {
             throw new IllegalArgumentException();
         }

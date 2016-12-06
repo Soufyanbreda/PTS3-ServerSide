@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import match.Map;
-import match.Match;
+import match2.Map;
+import match2.Match;
 import player.CompetingPlayer;
 import player.Player;
 import player.SpectatingPlayer;
@@ -67,6 +67,13 @@ public class ServerManager
             System.out.println("----------------------------");
             System.out.println("SERVER CRASHED, pls relaunch");
         }
+        
+        //blub();
+    }
+    
+    public void blub()
+    {
+        Match match = logIn("Player1", "192.168.178.16", 1100);
     }
     
     public Match logIn(String username, String ip, int portnumber)

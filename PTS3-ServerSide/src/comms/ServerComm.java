@@ -9,7 +9,7 @@ package comms;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import match.Match;
+import match2.Match;
 import server.ServerManager;
 
 
@@ -30,7 +30,7 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     }
     
     @Override
-    public Match Login(String username, String ip, int portnumber)
+    public Match Login(String username, String ip, int portnumber) throws RemoteException
     {
         return serverManager.logIn(username, ip, portnumber);
     }
