@@ -7,6 +7,7 @@ package comms;
 
 //import match.Lobby;
 
+import java.awt.Point;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import match2.Match;
@@ -44,6 +45,12 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     @Override
     public void ready(String username){
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void pushPosition(String username, Point position, float rotation)
+    {
+        
     }
     
 }

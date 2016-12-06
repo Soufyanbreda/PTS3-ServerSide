@@ -74,6 +74,18 @@ public class ServerManager
 //        blub();
     }
     
+    public void pushPosition(String username, Point position, float rotation) throws RemoteException
+    {
+        CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
+        player.getPlayerCar().setPosition(position);
+        player.getPlayerCar().setRotation(rotation);
+        
+        for(IComms clientComm : clientComms)
+        {
+            clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+        }
+    }
+    
     public void blub()
     {
         logIn("player1", "145.93.34.2", 1100);

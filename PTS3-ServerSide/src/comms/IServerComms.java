@@ -5,6 +5,7 @@
  */
 package comms;
 
+import java.awt.Point;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import match2.Match;
@@ -20,4 +21,6 @@ public interface IServerComms extends Remote
     public boolean roleSwitch(String username) throws RemoteException;
     
     public void ready(String username) throws RemoteException;
+    
+    public void pushPosition(String username, Point position, float rotation);
 }
