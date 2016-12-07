@@ -135,7 +135,7 @@ public class ServerManager
 
                 match.addPlayer(player);
                 
-                System.out.println("" + player.getUsername());
+//                System.out.println("" + player.getUsername());
                 
                 if(match.getPlayers().size() > 1)
                 {
