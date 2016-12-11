@@ -141,7 +141,7 @@ public class ServerManager
                 {
                     for(IComms clientComm : clientComms)
                     {
-                        clientComm.pushPlayer(player);
+                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
                     }
                 }
             } 
@@ -150,23 +150,23 @@ public class ServerManager
                 Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else
-        {
-            SpectatingPlayer player = new SpectatingPlayer(username, generateColor());
-            match.addPlayer(player);
-            
-            if(match.getPlayers().size() > 1)
-            {
-                for(IComms clientComm : clientComms)
-                {
-                    try {
-                        clientComm.pushPlayer(player);
-                    } catch (RemoteException ex) {
-                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        }
+//        else
+//        {
+//            SpectatingPlayer player = new SpectatingPlayer(username, generateColor());
+//            match.addPlayer(player);
+//            
+//            if(match.getPlayers().size() > 1)
+//            {
+//                for(IComms clientComm : clientComms)
+//                {
+//                    try {
+//                        clientComm.pushPlayer(player);
+//                    } catch (RemoteException ex) {
+//                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//            }
+//        }
         
         Map map = new MapManager().maps.get(1);
         

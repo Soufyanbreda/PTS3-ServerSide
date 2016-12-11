@@ -6,10 +6,8 @@
 package Game;
 
 import java.awt.Point;
-import player2.CompetingPlayer;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import player2.Player;
 
 /**
  *
@@ -18,6 +16,4 @@ import player2.Player;
 public interface IComms extends Remote
 {
     public void pushPlayerPosition(String username, Point position, float rotation) throws RemoteException;
-    
-    public void pushPlayer(Player player) throws RemoteException;
 }
