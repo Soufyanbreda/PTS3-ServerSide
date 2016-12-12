@@ -76,7 +76,9 @@ public class ServerManager
     
     public void pushPosition(String username, Point position, float rotation) throws RemoteException
     {
+        System.out.println("username: " + username);
         CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
+        System.out.println("playername: " + player.getUsername());
         player.getPlayerCar().setPosition(position);
         player.getPlayerCar().setRotation(rotation);
         
@@ -92,8 +94,7 @@ public class ServerManager
     }
         
     public Match logIn(String username, String ip, int portnumber)
-    {
-        
+    {   
         if(username == null)
         {   
             throw new IllegalArgumentException("username is null");
