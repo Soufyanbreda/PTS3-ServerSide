@@ -94,7 +94,7 @@ public class ServerManager
     }
         
     public Match logIn(String username, String ip, int portnumber)
-    {   
+    {
         if(username == null)
         {   
             throw new IllegalArgumentException("username is null");
@@ -129,8 +129,8 @@ public class ServerManager
         
         if(match.hasCompetingRoom())
         {
-            try
-            {
+//            try
+//            {
                 CompetingPlayer player = new CompetingPlayer(username, generateColor());
                 player.setPlayerCar(new PlayerCar(0f, new Point(335, 665)));
 
@@ -138,18 +138,18 @@ public class ServerManager
                 
 //                System.out.println("" + player.getUsername());
                 
-                if(match.getPlayers().size() > 1)
-                {
-                    for(IComms clientComm : clientComms)
-                    {
-                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
-                    }
-                }
-            } 
-            catch(RemoteException ex)
-            {
-                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//                if(match.getPlayers().size() > 1)
+//                {
+//                    for(IComms clientComm : clientComms)
+//                    {
+//                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+//                    }
+//                }
+//            } 
+//            catch(RemoteException ex)
+//            {
+//                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
 //        else
 //        {
