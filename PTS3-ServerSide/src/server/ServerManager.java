@@ -76,9 +76,9 @@ public class ServerManager
     
     public void pushPosition(String username, Point position, float rotation) throws RemoteException
     {
-        System.out.println("username: " + username);
+//        System.out.println("username: " + username);
         CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
-        System.out.println("playername: " + player.getUsername());
+//        System.out.println("playername: " + player.getUsername());
         player.getPlayerCar().setPosition(position);
         player.getPlayerCar().setRotation(rotation);
         
@@ -132,7 +132,8 @@ public class ServerManager
 //            try
 //            {
                 CompetingPlayer player = new CompetingPlayer(username, generateColor());
-                player.setPlayerCar(new PlayerCar(0f, new Point(335, 665)));
+                player.setPlayerCar(new PlayerCar(0f, new Point(335, 685)));
+                player.getPlayerCar().setRotation(90);
 
                 match.addPlayer(player);
                 
