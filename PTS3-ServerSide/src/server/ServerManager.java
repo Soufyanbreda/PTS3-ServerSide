@@ -251,6 +251,21 @@ public class ServerManager
         match.setMap(map);
     }
     
+    public void pushFinish(String username)
+    {
+        for(IComms clientComm : clientComms)
+        {
+            try
+            {
+                clientComm.pushPlayerPosition(username, new Point(300, 500), 0f);
+            }
+            catch (RemoteException ex)
+            {
+                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
 //    public void pushPosition(String username, Point location, float angle)
 //    {
 //        

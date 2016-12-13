@@ -53,4 +53,9 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
         serverManager.pushPosition(username, position, rotation);
     }
     
+    @Override
+    public void pushFinish(String username) throws RemoteException
+    {
+        serverManager.pushFinish(username);
+    }
 }

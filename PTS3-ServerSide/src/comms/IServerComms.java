@@ -17,10 +17,8 @@ import match2.Match;
 public interface IServerComms extends Remote
 {
     public Match Login(String username, String ip, int portnumber) throws RemoteException;
-    
     public boolean roleSwitch(String username) throws RemoteException;
-    
     public void ready(String username) throws RemoteException;
-    
     public void pushPosition(String username, Point position, float rotation) throws RemoteException;
+    public void pushFinish(String username) throws RemoteException;
 }
