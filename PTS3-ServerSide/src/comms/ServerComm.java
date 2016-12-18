@@ -31,10 +31,10 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     }
     
     @Override
-    public Match Login(String username, String ip, int portnumber) throws RemoteException
+    public Match Login(String username, boolean isCompeting, String ip, int portnumber) throws RemoteException
     {
         System.out.println(username + " is logging in");
-        return serverManager.logIn(username, ip, portnumber);
+        return serverManager.logIn(username, isCompeting, ip, portnumber);
     }
     
     @Override
