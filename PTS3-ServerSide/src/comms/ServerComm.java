@@ -58,4 +58,10 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     {
         serverManager.pushFinish(username);
     }
+
+    @Override
+    public void pushBullet(String username) {
+     //serverManager.pushBullet(username);
+     throw new UnsupportedOperationException();
+    }
 }

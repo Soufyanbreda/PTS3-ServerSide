@@ -6,6 +6,8 @@
 package server;
 
 import Game.IComms;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import comms.IServerComms;
 import comms.ServerComm;
@@ -30,6 +32,7 @@ import player2.PlayerCar;
 import player2.SpectatingPlayer;
 import utils2.Color;
 import utils2.PlayerState;
+import utils2.Projectile;
 
 /**
  * @author Marouan Bakour
@@ -254,4 +257,31 @@ public class ServerManager
 //        
 ////        serverComms.pushPlayer(match.getPlayer(username));
 //    }
+    
+    
+  
+    public void pushBullet(String username) throws RemoteException{
+           ArrayList<Projectile> projectiles = new ArrayList<>();
+           CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
+           
+           //Shoot
+         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+         {
+             projectiles.add(new Projectile(player.getPlayerCar().getRectangle().getX(),player.getPlayerCar().getRectangle().getY(), player.getPlayerCar()));
+         }
+         
+            //Update
+         ArrayList<Projectile> projectilesToRemove = new ArrayList<>();
+         for(Projectile p : projectiles)
+         {
+             p.update(Gdx.graphics.getDeltaTime());
+             if(p.isRemove())
+             {
+                 projectilesToRemove.add(p);
+             }
+         }
+         projectiles.removeAll(projectilesToRemove);
+         
+        
+    }
 }
