@@ -21,5 +21,5 @@ public interface IServerComms extends Remote
     public void ready(String username) throws RemoteException;
     public void pushPosition(String username, Point position, float rotation) throws RemoteException;
     public void pushFinish(String username) throws RemoteException;
-    public void pushBullet(String username);
+    //public void pushBullet(String username);
 }
