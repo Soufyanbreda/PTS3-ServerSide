@@ -5,6 +5,7 @@
  */
 package comms;
 
+import Chat.Chatmessage;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -54,4 +55,10 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     {
         serverManager.pushFinish(username);
     }    
+    
+     @Override
+    public void broadcastChatmessage(Chatmessage chatmessage) throws RemoteException {
+    serverManager.BroadcastChatmessage(chatmessage);
+    }
+    
 }

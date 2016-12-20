@@ -5,6 +5,7 @@
  */
 package server;
 
+import Chat.Chatmessage;
 import Game.IComms;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -255,7 +256,11 @@ public class ServerManager
             }
         }
     }
-    
+      public void BroadcastChatmessage(Chatmessage chatmessage) throws RemoteException{
+     for(IComms clientcomm: clientComms){
+     clientcomm.receiveNewChatmessage(chatmessage);
+     }
+      }
     public void pushBullet(String username) throws RemoteException
     {
         ArrayList<Projectile> projectiles = new ArrayList<>();
