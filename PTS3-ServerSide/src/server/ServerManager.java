@@ -112,6 +112,7 @@ public class ServerManager
         {
             Registry registry = LocateRegistry.getRegistry(ip, portnumber);
             clientComms.add((IComms) registry.lookup("Client"));
+            System.out.println("clientComm added");
             System.out.println("----------------------------");
             System.out.println("connected to received client");
             System.out.println("ip: " + ip);
@@ -133,19 +134,19 @@ public class ServerManager
 
             match.addPlayer(player);                                
             
-            if(match.getPlayers().size() > 1)
-            {
-                for(IComms clientComm : clientComms)
-                {
-                    try
-                    {
-                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
-                    } catch (RemoteException ex)
-                    {
-                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
+//            if(match.getPlayers().size() > 1)
+//            {
+//                for(IComms clientComm : clientComms)
+//                {
+//                    try
+//                    {
+//                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+//                    } catch (RemoteException ex)
+//                    {
+//                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//            }
         }
         else
         {
