@@ -78,7 +78,7 @@ public class ServerManager
 //        blub();
     }
     
-    public void pushPosition(String username, Point position, float rotation) throws RemoteException
+    public void pushPosition(String username, Point position, float rotation)
     {
 //        System.out.println("username: " + username);
         CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
@@ -88,7 +88,14 @@ public class ServerManager
         
         for(IComms clientComm : clientComms)
         {
-            clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+            try
+            {
+                clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+            }
+            catch (RemoteException ex)
+            {
+                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
             
@@ -293,8 +300,6 @@ public class ServerManager
                  projectilesToRemove.add(p);
              }
          }
-         projectiles.removeAll(projectilesToRemove);
-         
-        
+         projectiles.removeAll(projectilesToRemove);   
     }
 }
