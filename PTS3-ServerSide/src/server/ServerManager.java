@@ -134,19 +134,19 @@ public class ServerManager
 
             match.addPlayer(player);                                
             
-            if(match.getPlayers().size() > 1)
-            {
-                for(IComms clientComm : clientComms)
-                {
-                    try
-                    {
-                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
-                    } catch (RemoteException ex)
-                    {
-                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
+//            if(match.getPlayers().size() > 1)
+//            {
+//                for(IComms clientComm : clientComms)
+//                {
+//                    try
+//                    {
+//                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+//                    } catch (RemoteException ex)
+//                    {
+//                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                }
+//            }
         }
         else
         {
