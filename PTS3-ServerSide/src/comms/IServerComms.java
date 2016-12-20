@@ -5,7 +5,6 @@
  */
 package comms;
 
-import Chat.Chatmessage;
 import java.awt.Point;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -23,5 +22,4 @@ public interface IServerComms extends Remote
     public void pushPosition(String username, Point position, float rotation) throws RemoteException;
     public void pushFinish(String username) throws RemoteException;
     public void pushBullet(String username);
-    public void broadcastChatmessage(Chatmessage chatmessage) throws RemoteException;
 }

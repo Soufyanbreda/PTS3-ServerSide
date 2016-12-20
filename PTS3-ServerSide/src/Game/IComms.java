@@ -5,7 +5,6 @@
  */
 package Game;
 
-import Chat.Chatmessage;
 import java.awt.Point;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -17,8 +16,4 @@ import java.rmi.RemoteException;
 public interface IComms extends Remote
 {
     public void pushPlayerPosition(String username, Point position, float rotation) throws RemoteException;
-    
-    public void receiveNewChatmessage(Chatmessage chatmessage)throws RemoteException;
-
-    
 }

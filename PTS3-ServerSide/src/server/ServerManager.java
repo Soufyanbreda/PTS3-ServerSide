@@ -5,7 +5,6 @@
  */
 package server;
 
-import Chat.Chatmessage;
 import Game.IComms;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -284,11 +283,5 @@ public class ServerManager
          projectiles.removeAll(projectilesToRemove);
          
         
-    }
-    
-        public void BroadcastChatmessage(Chatmessage chatmessage) throws RemoteException{
-     for(IComms clientcomm: clientComms){
-     clientcomm.receiveNewChatmessage(chatmessage);
-     }
     }
 }
