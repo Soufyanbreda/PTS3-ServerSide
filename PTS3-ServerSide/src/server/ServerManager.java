@@ -261,10 +261,18 @@ public class ServerManager
     
     
     
-     public void BroadcastChatmessage(Chatmessage chatmessage){
-     for(IComms clientcomm: clientComms){
-     clientcomm.receiveNewChatmessage(chatmessage);
-     }
+    public void BroadcastChatmessage(Chatmessage chatmessage)
+    {
+        for(IComms clientcomm: clientComms)
+        {
+            try
+            {
+                clientcomm.receiveNewChatmessage(chatmessage);
+            } catch (RemoteException ex)
+            {
+                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
   
     public void pushBullet(String username) throws RemoteException{
