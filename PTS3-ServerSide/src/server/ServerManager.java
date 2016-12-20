@@ -5,7 +5,6 @@
  */
 package server;
 
-import Chat.ChatMessage;
 import Game.IComms;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -257,49 +256,27 @@ public class ServerManager
         }
     }
     
-//    public void pushPosition(String username, Point location, float angle)
-//    {
-//        
-//        ((CompetingPlayer) match.getPlayer(username)).getPlayerCar().getSprite().setPosition(location.x, location.y);
-//        ((CompetingPlayer) match.getPlayer(username)).getPlayerCar().getSprite().setRotation(angle);
-//        
-////        serverComms.pushPlayer(match.getPlayer(username));
-//    }
-    
-    
-    
-    public void BroadcastChatmessage(ChatMessage chatmessage)
+    public void pushBullet(String username) throws RemoteException
     {
-        for(IComms clientcomm: clientComms)
+        ArrayList<Projectile> projectiles = new ArrayList<>();
+        CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
+
+        //Shoot
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
         {
-            try {
-                clientcomm.receiveNewChatmessage(chatmessage);
-            } catch (RemoteException ex) {
-                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+            projectiles.add(new Projectile(player.getPlayerCar().getRectangle().getX(),player.getPlayerCar().getRectangle().getY(), player.getPlayerCar()));
+        }
+
+         //Update
+        ArrayList<Projectile> projectilesToRemove = new ArrayList<>();
+        for(Projectile p : projectiles)
+        {
+            p.update(Gdx.graphics.getDeltaTime());
+            if(p.isRemove())
+            {
+                projectilesToRemove.add(p);
             }
         }
-    }
-  
-    public void pushBullet(String username) throws RemoteException{
-           ArrayList<Projectile> projectiles = new ArrayList<>();
-           CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
-           
-           //Shoot
-         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
-         {
-             projectiles.add(new Projectile(player.getPlayerCar().getRectangle().getX(),player.getPlayerCar().getRectangle().getY(), player.getPlayerCar()));
-         }
-         
-            //Update
-         ArrayList<Projectile> projectilesToRemove = new ArrayList<>();
-         for(Projectile p : projectiles)
-         {
-             p.update(Gdx.graphics.getDeltaTime());
-             if(p.isRemove())
-             {
-                 projectilesToRemove.add(p);
-             }
-         }
-         projectiles.removeAll(projectilesToRemove);   
+        projectiles.removeAll(projectilesToRemove);   
     }
 }

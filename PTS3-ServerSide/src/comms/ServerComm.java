@@ -5,16 +5,11 @@
  */
 package comms;
 
-//import match.Lobby;
-
-import Chat.ChatMessage;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import match2.Match;
 import server.ServerManager;
-
-
 
 /**
  *
@@ -58,11 +53,5 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     public void pushFinish(String username) throws RemoteException
     {
         serverManager.pushFinish(username);
-    }
-
-    @Override
-    public void broadcastChatmessage(ChatMessage chatmessage) throws RemoteException {
-    serverManager.BroadcastChatmessage(chatmessage);
-    }
-    
+    }    
 }
