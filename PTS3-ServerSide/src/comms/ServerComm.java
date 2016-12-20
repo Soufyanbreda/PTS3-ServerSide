@@ -7,6 +7,7 @@ package comms;
 
 //import match.Lobby;
 
+import Chat.Chatmessage;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -63,5 +64,10 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     public void pushBullet(String username) {
      //serverManager.pushBullet(username);
      throw new UnsupportedOperationException();
+    }
+    
+    @Override
+    public void broadcastChatmessage(Chatmessage chatmessage) throws RemoteException {
+    serverManager.BroadcastChatmessage(chatmessage);
     }
 }
