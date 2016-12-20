@@ -5,7 +5,7 @@
  */
 package server;
 
-import Chat.Chatmessage;
+import Chat.ChatMessage;
 import Game.IComms;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -261,15 +261,13 @@ public class ServerManager
     
     
     
-    public void BroadcastChatmessage(Chatmessage chatmessage)
+    public void BroadcastChatmessage(ChatMessage chatmessage)
     {
         for(IComms clientcomm: clientComms)
         {
-            try
-            {
+            try {
                 clientcomm.receiveNewChatmessage(chatmessage);
-            } catch (RemoteException ex)
-            {
+            } catch (RemoteException ex) {
                 Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
