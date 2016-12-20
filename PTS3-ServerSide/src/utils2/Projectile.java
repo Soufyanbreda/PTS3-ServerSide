@@ -48,8 +48,8 @@ public class Projectile implements Serializable{
 	public void update(float deltaTime) {
             if(firstLocation)
             {
-//                dirX = (float)Math.cos(Math.toRadians(car.getSprite().getRotation()+90));
-//                dirY = (float)Math.sin(Math.toRadians(car.getSprite().getRotation()+90));
+               dirX = (float)Math.cos(Math.toRadians(car.getRotation()+90));
+                dirY = (float)Math.sin(Math.toRadians(car.getRotation()+90));
                 firstLocation = false;
             }
             x +=  dirX * speed * deltaTime;

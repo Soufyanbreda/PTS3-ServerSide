@@ -8,8 +8,11 @@ package comms;
 import java.awt.Point;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import match2.Match;
 import server.ServerManager;
+import utils2.Projectile;
 
 /**
  *
@@ -53,5 +56,18 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     public void pushFinish(String username) throws RemoteException
     {
         serverManager.pushFinish(username);
-    }    
+    }  
+    
+   
+
+    @Override
+    public void pushProjectile(Projectile p) throws RemoteException {
+        try {
+            serverManager.pushProjectile(p);
+        } 
+        catch (RemoteException ex) {
+            Logger.getLogger(ServerComm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

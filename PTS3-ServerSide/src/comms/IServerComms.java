@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import match2.Match;
+import utils2.Projectile;
 
 /**
  *
@@ -21,4 +22,5 @@ public interface IServerComms extends Remote
     public void ready(String username) throws RemoteException;
     public void pushPosition(String username, Point position, float rotation) throws RemoteException;
     public void pushFinish(String username) throws RemoteException;
+    public void pushProjectile(Projectile projectile) throws RemoteException;
 }

@@ -256,27 +256,35 @@ public class ServerManager
         }
     }
     
-    public void pushBullet(String username) throws RemoteException
+//    public void pushBullet(String username) throws RemoteException
+//    {
+//        ArrayList<Projectile> projectiles = new ArrayList<>();
+//        CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
+//
+//        //Shoot
+//        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+//        {
+//            projectiles.add(new Projectile(player.getPlayerCar().getRectangle().getX(),player.getPlayerCar().getRectangle().getY(), player.getPlayerCar()));
+//        }
+//
+//         //Update
+//        ArrayList<Projectile> projectilesToRemove = new ArrayList<>();
+//        for(Projectile p : projectiles)
+//        {
+//            p.update(Gdx.graphics.getDeltaTime());
+//            if(p.isRemove())
+//            {
+//                projectilesToRemove.add(p);
+//            }
+//        }
+//        projectiles.removeAll(projectilesToRemove);   
+//    }
+    public void pushProjectile(Projectile p) throws RemoteException
     {
-        ArrayList<Projectile> projectiles = new ArrayList<>();
-        CompetingPlayer player = ((CompetingPlayer) match.getPlayer(username));
-
-        //Shoot
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+          for(IComms clientComm : clientComms)
         {
-            projectiles.add(new Projectile(player.getPlayerCar().getRectangle().getX(),player.getPlayerCar().getRectangle().getY(), player.getPlayerCar()));
+            clientComm.pushProjectile(p);
         }
-
-         //Update
-        ArrayList<Projectile> projectilesToRemove = new ArrayList<>();
-        for(Projectile p : projectiles)
-        {
-            p.update(Gdx.graphics.getDeltaTime());
-            if(p.isRemove())
-            {
-                projectilesToRemove.add(p);
-            }
-        }
-        projectiles.removeAll(projectilesToRemove);   
     }
+    
 }
