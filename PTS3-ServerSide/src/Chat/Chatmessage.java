@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Marouan Bakour
  * @author Milton van de Sanden
  */
-public class Chatmessage  implements Serializable
+public class ChatMessage  implements Serializable
 {
     private String playername;
     private String Message;
@@ -51,7 +51,7 @@ public class Chatmessage  implements Serializable
 
     
     
-    public Chatmessage(String message, String playername, Color color)
+    public ChatMessage(String message, String playername, Color color)
     {
         this.Message = message;
         this.playername = playername;
