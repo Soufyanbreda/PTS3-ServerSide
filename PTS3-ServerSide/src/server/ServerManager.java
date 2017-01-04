@@ -256,14 +256,13 @@ public class ServerManager
             }
         }
     }
-<<<<<<< HEAD
+
       public void BroadcastChatmessage(Chatmessage chatmessage) throws RemoteException{
      for(IComms clientcomm: clientComms){
      clientcomm.receiveNewChatmessage(chatmessage);
      }
       }
-    public void pushBullet(String username) throws RemoteException
-=======
+   
     
 //    public void pushBullet(String username) throws RemoteException
 //    {
@@ -289,7 +288,7 @@ public class ServerManager
 //        projectiles.removeAll(projectilesToRemove);   
 //    }
     public void pushProjectile(Projectile p) throws RemoteException
->>>>>>> shootingbranch
+
     {
           for(IComms clientComm : clientComms)
         {

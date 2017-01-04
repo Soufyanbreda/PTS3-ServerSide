@@ -57,16 +57,14 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
     public void pushFinish(String username) throws RemoteException
     {
         serverManager.pushFinish(username);
-<<<<<<< HEAD
+
     }    
     
      @Override
     public void broadcastChatmessage(Chatmessage chatmessage) throws RemoteException {
     serverManager.BroadcastChatmessage(chatmessage);
     }
-    
-=======
-    }  
+   
     
    
 
@@ -80,5 +78,5 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
         }
     }
 
->>>>>>> shootingbranch
+
 }

@@ -18,10 +18,10 @@ import utils2.Projectile;
 public interface IComms extends Remote
 {
     public void pushPlayerPosition(String username, Point position, float rotation) throws RemoteException;
-<<<<<<< HEAD
+
     
      public void receiveNewChatmessage(Chatmessage chatmessage)throws RemoteException;
-=======
+
     public void pushProjectile(Projectile projectile) throws RemoteException;
->>>>>>> shootingbranch
+
 }
