@@ -19,14 +19,11 @@ import utils2.GameState;
 public class Match implements Serializable
 {
     private GameState gameState;
-    
-    /**
-     *
-     */
     public static final long serialVersionUID = 1875;
     private Map map;
     
     private List<Player> players;
+    private List<String> finishedPlayers;
     
     public Match()
     {
@@ -106,5 +103,40 @@ public class Match implements Serializable
         this.map = map;
     }
     
+    public void setFinishedPlayers(List<String> finishedPlayers)
+    {
+        this.finishedPlayers = finishedPlayers;
+    }
     
+    public List<String> getFinishedPlayers()
+    {
+        return finishedPlayers;
+    }
+    
+    public boolean addFinishedPlayer(String player)
+    {
+        if(!finishedPlayers.contains(player))
+        {
+            finishedPlayers.add(player);
+            
+            int count = 0;
+            
+            for(Player player2 : players)
+            {
+                count++;
+            }
+            
+            if(count == finishedPlayers.size())
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    public void removeFinishedPlayer(Player player)
+    {
+        finishedPlayers.remove(player);
+    }
 }
