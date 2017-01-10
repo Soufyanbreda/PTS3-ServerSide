@@ -24,7 +24,8 @@ public interface IServerComms extends Remote
     public void pushPosition(String username, Point position, float rotation) throws RemoteException;
     public void pushFinish(String username) throws RemoteException;
 
-    
+    public void pushConnectionState(boolean isStable) throws RemoteException;
+     
     public void broadcastChatmessage(Chatmessage chatmessage) throws RemoteException;
 
     public void pushProjectile(Projectile projectile) throws RemoteException;

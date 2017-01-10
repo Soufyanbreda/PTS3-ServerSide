@@ -41,6 +41,8 @@ import utils2.Projectile;
  */
 public class ServerManager
 {   
+    private boolean connectionsStable = false;
+    
     private Match match;
     private IServerComms serverComms;
     
@@ -86,21 +88,26 @@ public class ServerManager
         player.getPlayerCar().setPosition(position);
         player.getPlayerCar().setRotation(rotation);
         
-        for(IComms clientComm : clientComms)
+        if(connectionsStable)
         {
-            try
+            for(IComms clientComm : clientComms)
             {
-                clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
-            }
-            catch (RemoteException ex)
-            {
-                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                try
+                {
+                    clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+                }
+                catch (RemoteException ex)
+                {
+                    Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }            
         }
     }
             
     public Match logIn(String username, boolean isCompeting, String ip, int portnumber)
     {
+        connectionsStable = false;
+        
         if(username == null)
         {   
             throw new IllegalArgumentException("username is null");
@@ -124,7 +131,40 @@ public class ServerManager
             System.out.println("connected to received client");
             System.out.println("ip: " + ip);
             System.out.println("port: " + portnumber);
-        } catch (RemoteException | NotBoundException ex)
+            
+            if(match.hasCompetingRoom() && isCompeting)
+            {
+                CompetingPlayer player = new CompetingPlayer(username, generateColor());
+                player.setPlayerCar(new PlayerCar(0f, new Point(335, 685)));
+                player.getPlayerCar().setRotation(90);
+
+                match.addPlayer(player);                                
+
+    //            if(match.getPlayers().size() > 1)
+    //            {
+    //                for(IComms clientComm : clientComms)
+    //                {
+    //                    try
+    //                    {
+    //                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+    //                    } catch (RemoteException ex)
+    //                    {
+    //                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+    //                    }
+    //                }
+    //            }
+            }
+            else
+            {
+                SpectatingPlayer player = new SpectatingPlayer(username, generateColor());
+                match.addPlayer(player);            
+            }
+
+            Map map = new MapManager().maps.get(1);
+
+            match.setMap(map);            
+        }
+        catch (RemoteException | NotBoundException ex)
         {
             Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("----------------------------");
@@ -133,37 +173,6 @@ public class ServerManager
             System.out.println("port: " + portnumber);
         }
         
-        if(match.hasCompetingRoom() && isCompeting)
-        {
-            CompetingPlayer player = new CompetingPlayer(username, generateColor());
-            player.setPlayerCar(new PlayerCar(0f, new Point(335, 685)));
-            player.getPlayerCar().setRotation(90);
-
-            match.addPlayer(player);                                
-            
-//            if(match.getPlayers().size() > 1)
-//            {
-//                for(IComms clientComm : clientComms)
-//                {
-//                    try
-//                    {
-//                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
-//                    } catch (RemoteException ex)
-//                    {
-//                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//            }
-        }
-        else
-        {
-            SpectatingPlayer player = new SpectatingPlayer(username, generateColor());
-            match.addPlayer(player);            
-        }
-                
-        Map map = new MapManager().maps.get(1);
-        
-        match.setMap(map);
         
         return match;
     }
@@ -310,5 +319,9 @@ public class ServerManager
             clientComm.pushProjectile(p);
         }
     }
-    
+
+    public void setConnectionsStable(boolean isStable)
+    {
+        connectionsStable = isStable;
+    }
 }

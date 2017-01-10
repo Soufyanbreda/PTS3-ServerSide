@@ -78,5 +78,11 @@ public class ServerComm extends UnicastRemoteObject implements IServerComms
         }
     }
 
+    @Override
+    public void pushConnectionState(boolean isStable) throws RemoteException
+    {
+        serverManager.setConnectionsStable(isStable);
+    }
+
 
 }
