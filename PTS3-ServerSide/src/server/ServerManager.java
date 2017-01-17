@@ -312,11 +312,13 @@ public class ServerManager
 //        projectiles.removeAll(projectilesToRemove);   
 //    }
     public void pushProjectile(Projectile p) throws RemoteException
-
     {
-          for(IComms clientComm : clientComms)
+        if(connectionsStable)
         {
-            clientComm.pushProjectile(p);
+            for(IComms clientComm : clientComms)
+            {
+                clientComm.pushProjectile(p);
+            }            
         }
     }
 
