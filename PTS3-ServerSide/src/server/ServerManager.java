@@ -254,8 +254,8 @@ public class ServerManager
     public void pushFinish(String username)
     {
 //        boolean matchFinished = match.addFinishedPlayer(username);
-        if(connectionsStable)
-        {
+        //if(connectionsStable)
+        //{
             for(IComms clientComm : clientComms)
             {
                 try
@@ -280,7 +280,7 @@ public class ServerManager
                     Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }   
-        }        
+        //}        
     }
 
       public void BroadcastChatmessage(Chatmessage chatmessage) throws RemoteException
