@@ -254,37 +254,44 @@ public class ServerManager
     public void pushFinish(String username)
     {
 //        boolean matchFinished = match.addFinishedPlayer(username);
-        
-        for(IComms clientComm : clientComms)
+        if(connectionsStable)
         {
-            try
+            for(IComms clientComm : clientComms)
             {
-                clientComm.pushPlayerPosition(username, new Point(300, 500), 0f);
-                clientComm.receiveNewChatmessage(new Chatmessage(" " + username + " has finished", "SYSTEM", com.badlogic.gdx.graphics.Color.BLACK));
-                
-//                if(matchFinished)
-//                {
-//                    clientComm.receiveNewChatmessage(new Chatmessage(" MATCH FINISHED", "SYSTEM", com.badlogic.gdx.graphics.Color.BLACK));
-//                    
-//                    int rank = 1;
-//                    for(String player : match.getFinishedPlayers())
-//                    {
-//                        clientComm.receiveNewChatmessage(new Chatmessage(" " + player + " finished " + rank, "SYSTEM", com.badlogic.gdx.graphics.Color.BLACK));
-//                        rank++;
-//                    }
-//                }
-            }
-            catch (RemoteException ex)
-            {
-                Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+                try
+                {
+                    clientComm.pushPlayerPosition(username, new Point(300, 500), 0f);
+                    clientComm.receiveNewChatmessage(new Chatmessage(" " + username + " has finished", "SYSTEM", com.badlogic.gdx.graphics.Color.BLACK));
+
+    //                if(matchFinished)
+    //                {
+    //                    clientComm.receiveNewChatmessage(new Chatmessage(" MATCH FINISHED", "SYSTEM", com.badlogic.gdx.graphics.Color.BLACK));
+    //                    
+    //                    int rank = 1;
+    //                    for(String player : match.getFinishedPlayers())
+    //                    {
+    //                        clientComm.receiveNewChatmessage(new Chatmessage(" " + player + " finished " + rank, "SYSTEM", com.badlogic.gdx.graphics.Color.BLACK));
+    //                        rank++;
+    //                    }
+    //                }
+                }
+                catch (RemoteException ex)
+                {
+                    Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }   
+        }        
     }
 
-      public void BroadcastChatmessage(Chatmessage chatmessage) throws RemoteException{
-     for(IComms clientcomm: clientComms){
-     clientcomm.receiveNewChatmessage(chatmessage);
-     }
+      public void BroadcastChatmessage(Chatmessage chatmessage) throws RemoteException
+      {
+        if(connectionsStable)
+        {
+            for(IComms clientcomm: clientComms)
+            {
+               clientcomm.receiveNewChatmessage(chatmessage);
+            }
+        }
       }
    
     
