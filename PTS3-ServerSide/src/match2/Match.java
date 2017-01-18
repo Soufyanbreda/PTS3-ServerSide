@@ -27,7 +27,7 @@ public class Match implements Serializable
     
     public Match()
     {
-        gameState = GameState.LOBBY;
+        gameState = GameState.LOGIN;
         
         players = new ArrayList<>();
     }
