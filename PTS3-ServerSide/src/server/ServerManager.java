@@ -140,19 +140,24 @@ public class ServerManager
 
                 match.addPlayer(player);                                
 
-    //            if(match.getPlayers().size() > 1)
-    //            {
-    //                for(IComms clientComm : clientComms)
-    //                {
-    //                    try
-    //                    {
-    //                        clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
-    //                    } catch (RemoteException ex)
-    //                    {
-    //                        Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
-    //                    }
-    //                }
-    //            }
+//                if(match.getPlayers().size() > 1)
+//                {
+//                    for(IComms clientComm : clientComms)
+//                    {
+//                        try
+//                        {
+//                            System.out.println("blub");
+//                            if(connectionsStable)
+//                            {
+//                                System.out.println("Pushing new player to all clients");
+//                                clientComm.pushPlayerPosition(player.getUsername(), new Point((int) player.getPlayerCar().getRectangle().x, (int) player.getPlayerCar().getRectangle().y), player.getPlayerCar().getRotation());
+//                            }
+//                        } catch (RemoteException ex)
+//                        {
+//                            Logger.getLogger(ServerManager.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                    }
+//                }
             }
             else
             {
@@ -176,7 +181,7 @@ public class ServerManager
         
         return match;
     }
-    
+
     public Color generateColor()
     {
         Color color;
