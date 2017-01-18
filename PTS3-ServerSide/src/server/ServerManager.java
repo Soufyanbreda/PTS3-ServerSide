@@ -66,7 +66,7 @@ public class ServerManager
             serverRegistry = LocateRegistry.createRegistry(SERVERPORTNUMBER);
             serverRegistry.rebind("Server", serverComms);
             
-            System.out.println("----------------------------");
+            System.out.println("---------------------------");
             System.out.println("Server running");
             System.out.println("ip: " + SERVERIP.toString());
             System.out.println("port: " + SERVERPORTNUMBER);
