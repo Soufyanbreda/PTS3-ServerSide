@@ -10,53 +10,48 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Marouan Bakour
  * @author Milton van de Sanden
  */
 public class Chatmessage  implements Serializable
 {
     private String playername;
-    private String Message;
-
-                    
+    private String Message;                
     private Date MessageDate;
 
-    public String getPlayername() {
-        return playername;
-    }
-
-    public void setPlayername(String playerName) {
-        this.playername = playerName;
-    }
-
-
-
-    public String getMessage() {
-        return Message;
-    }
-
-    public void setMessage(String Message) {
-        this.Message = Message;
-    }
-
-  
-
-    public Date getMessageDate() {
-        return MessageDate;
-    }
-
-    public void setMessageDate(Date MessageDate) {
-        this.MessageDate = MessageDate;
-    }
-
-    
-    
     public Chatmessage(String message, String playername, Color color)
     {
         this.Message = message;
         this.playername = playername;
-
+        MessageDate = new Date();
     }
     
-   
+    public String getPlayername()
+    {
+        return playername;
+    }
+
+    public void setPlayername(String playerName)
+    {
+        this.playername = playerName;
+    }
+    
+    public String getMessage()
+    {
+        return Message;
+    }
+
+    public void setMessage(String Message)
+    {
+        this.Message = Message;
+    }
+    
+    public Date getMessageDate()
+    {
+        return MessageDate;
+    }
+
+    public void setMessageDate(Date MessageDate)
+    {
+        this.MessageDate = MessageDate;
+    }
 }
