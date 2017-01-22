@@ -127,47 +127,44 @@ public class ProjectileTest
         
         int x = 5;
         instance.setX(x);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        float expResult = 5;
+        float result = instance.getX();
+        
+        assertEquals(expResult, result, 0.0f);
     }
 
     /**
      * Test of setY method, of class Projectile.
      */
     @Test
-    public void testSetY() {
+    public void testSetY()
+    {
         System.out.println("setY");
-        int y = 0;
-        Projectile instance = null;
+        
+        int y = 5;
         instance.setY(y);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        float expResult = 5;
+        float result = instance.getY();
+        
+        assertEquals(expResult, result, 0.0f);
     }
 
     /**
      * Test of setSpeed method, of class Projectile.
      */
     @Test
-    public void testSetSpeed() {
+    public void testSetSpeed()
+    {
         System.out.println("setSpeed");
-        int speedX = 0;
-        Projectile instance = null;
+        
+        int speedX = 5;
         instance.setSpeed(speedX);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        float expResult = 5;
+        float result = instance.getSpeed();
+        
+        assertEquals(expResult, result, 0.0f);
     }
-
-    /**
-     * Test of setRemove method, of class Projectile.
-     */
-    @Test
-    public void testSetRemove() {
-        System.out.println("setRemove");
-        boolean remove = false;
-        Projectile instance = null;
-        instance.setRemove(remove);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
